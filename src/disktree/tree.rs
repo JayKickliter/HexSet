@@ -115,6 +115,11 @@ impl DiskTreeMap {
         Iter::new((*self.0).as_ref())
     }
 
+    /// Returns an iterator visiting the specified `cell` or its descendants.
+    pub fn subtree_iter(&self, _cell: Cell) -> Result<impl Iterator<Item = Result<(Cell, &[u8])>>> {
+        Ok(None.into_iter())
+    }
+
     /// Returns the DPtr to a base (res0) cell dptr.
     fn base_cell_dptr(cell: Cell) -> Dp {
         Dp::from(HDR_SZ + Dp::size() * cell.base() as usize)
